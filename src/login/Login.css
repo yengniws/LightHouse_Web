@@ -1,0 +1,41 @@
+* {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+ .google-login-button {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-radius: 2px;
+    border: none;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 8px 24px;
+    font-size: 14px;
+    font: bold;
+    font-family: Roboto;
+    cursor: pointer;
+    text-decoration: none;
+    position: absolute; /* 정중앙 정렬 */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.google-login-button:hover {
+    background-color: #4285F4;
+}
+
+.google-login-button:active {
+    background-color: #2F5CB8;
+}
+
+.google-login-button img {
+    width: 18px;
+    height: 18px;
+    margin-right: 24px;
+}

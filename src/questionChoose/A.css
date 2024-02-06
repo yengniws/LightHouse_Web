@@ -1,0 +1,16 @@
+* {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.A1 {
+    display: flex;
+    height: 500px;
+}
+
+.AList {
+    border-left: 1px solid #dcdcdc;
+    display: flex; 
+}
