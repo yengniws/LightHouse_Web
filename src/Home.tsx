@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import './Home.css';
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface BoardInfo {
@@ -84,8 +84,10 @@ const Home: React.FC = () => {
                 <div className="rightNav">
                     <div id="grade">문제 바로가기</div>
                     <div>
-                        <Link to='/grade1' className="question">
-                            1학년 문제 &nbsp; {'>'}
+                        <div>
+                            <Link to='/grade1' className="question">
+                                1학년 문제 &nbsp; {'>'}
+                            </Link>
                             <div className='level'>
                                 <Link to='/A1' className="a">수와 연산</Link>
                                 <Link to='/' className="b">문자와 식</Link>
@@ -93,9 +95,11 @@ const Home: React.FC = () => {
                                 <Link to='/' className="d">기하</Link>
                                 <Link to='/' className="e">확률과 통계</Link>
                             </div>
-                        </Link>
-                        <Link to='/grade2' className="question">
-                            2학년 문제 &nbsp; {'>'}
+                        </div>
+                        <div>
+                            <Link to='/grade2' className="question">
+                                2학년 문제 &nbsp; {'>'}
+                            </Link>
                             <div className='level'>
                                 <Link to='/A1' className="a">수와 연산</Link>
                                 <Link to='/' className="b">문자와 식</Link>
@@ -103,9 +107,11 @@ const Home: React.FC = () => {
                                 <Link to='/' className="d">기하</Link>
                                 <Link to='/' className="e">확률과 통계</Link>
                             </div>
-                        </Link>
-                        <Link to='/grade3' className="question">
-                            3학년 문제 &nbsp; {'>'}
+                        </div>
+                        <div>
+                            <Link to='/grade3' className="question">
+                                3학년 문제 &nbsp; {'>'}
+                            </Link>
                             <div className='level'>
                                 <Link to='/A1' className="a">수와 연산</Link>
                                 <Link to='/' className="b">문자와 식</Link>
@@ -113,7 +119,7 @@ const Home: React.FC = () => {
                                 <Link to='/' className="d">기하</Link>
                                 <Link to='/' className="e">확률과 통계</Link>
                             </div>
-                        </Link>
+                        </div>
                     </div>
                 </div>
             </div>

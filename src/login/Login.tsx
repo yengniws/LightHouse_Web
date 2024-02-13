@@ -1,55 +1,58 @@
-import './Login.css'
-import { auth } from "./firebase-config";
-import { GoogleAuthProvider, signInWithPopup, getIdToken, User } from "firebase/auth";
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from 'react-router-dom';
-import googleLogin from '../googleLogin.png'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-    const [userData, setUserData] = useState<User | null>(null);
-    const navigate = useNavigate();
-
-    async function handleGoogleLogin() {
-        const provider = new GoogleAuthProvider();
-        try {
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            setUserData(user);
-
-            const token = await getIdToken(auth.currentUser as any);
-
-            // HTTP 요청 보내기
-            const apiUrl = "";//URL 입력하기
-            axios.get(apiUrl, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            })
-                .then(response => {
-                    // 성공 시 처리
-                    console.log(response.data);
-                    // navigate('/ExtraLogin')
-                    navigate('/')
-                })
-                .catch(error => {
-                    // 에러 처리
-                    console.error(error);
-                });
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    return (
-        <div className='loginBox'>
-            {/* <button className="loginBtn" onClick={handleGoogleLogin}>로그인</button> */}
-            <button className='google-login-button' onClick={handleGoogleLogin}>
-                <img src={googleLogin} alt="Google 로그인" />
-                Sign in with Google
-            </button>
-        </div>
-    )
+interface User {
+  email: string;
+  password: string;
 }
+
+const Login: React.FC = () => {
+  const [user, setUser] = useState<User>({ email: '', password: '' });
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({
+      ...user,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8080/auth/login', user);
+      const token = response.data.token;
+
+      // save the token into local storage
+      localStorage.setItem('token', token);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="email"
+        name="email"
+        value={user.email}
+        onChange={handleInputChange}
+        placeholder="Email"
+      />
+      <input
+        type="password"
+        name="password"
+        value={user.password}
+        onChange={handleInputChange}
+        placeholder="Password"
+      />
+      <button type="submit">Login</button>
+    </form>
+    <Link to="/ExtraLogin">회원가입 페이지로 이동</Link>
+    </>
+  );
+};
 
 export default Login;

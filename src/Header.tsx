@@ -40,6 +40,7 @@ const Header: FC = () => {
         if (!isLoggedIn) {
             event.preventDefault();
             window.alert('로그인 해주세요');
+            navigate(path)
         }
     };
 
